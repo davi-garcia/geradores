@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador e Gerador de CNPJ</title>
+
+    <style>
+        /* Reseta o margin e padding de todos os elementos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilos Globais */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 32px;
+            color: #333;
+        }
+
+        /* Container do formulário */
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 0 auto 10px auto;
+            display: block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        /* Estilo para o CNPJ gerado */
+        .cnpj-gerado {
+            font-size: 22px;
+            font-weight: bold;
+            color: #28a745;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e8f5e9;
+            border-radius: 5px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        /* Estilo para a mensagem de resultado */
+        .resultado {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 18px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .resultado.valido {
+            color: #28a745;
+            background-color: #e8f5e9;
+        }
+
+        .resultado.invalido {
+            color: #dc3545;
+            background-color: #f8d7da;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Gerador de CNPJ -->
+    <div class="container">
+        <h1>Gerar CNPJ</h1>
+        <form action="/" method="POST">
+            <button type="submit" name="gerar" value="gerar">Gerar CNPJ</button>
+        </form>
+
+        {% if cnpj_gerado %}
+            <div class="cnpj-gerado">
+                <p>CNPJ Gerado: {{ cnpj_gerado }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Validador de CNPJ -->
+    <div class="container">
+        <h1>Validador de CNPJ</h1>
+        <form action="/" method="POST">
+            <input type="text" name="cnpj" placeholder="Digite o CNPJ" required>
+            <button type="submit" name="validar" value="validar">Validar</button>
+        </form>
+
+        {% if mensagem %}
+            <div class="resultado {% if 'inválido' in mensagem %}invalido{% else %}valido{% endif %}">
+                <p>{{ mensagem }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerar CPF</title>
+
+    <style>
+/* Reseta o margin e padding de todos os elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Garantir que o padding e o margin não afetam as dimensões */
+}
+
+/* Exemplo de estilo simples para o formulário */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Cor de fundo do corpo */
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Centraliza todos os textos dentro do body */
+}
+
+/* Título principal */
+h1 {
+    text-align: center; /* Garante que o título h1 seja centralizado */
+    margin-top: 50px;
+    font-size: 32px;
+    color: #333; /* Cor do título */
+}
+
+/* Container do formulário */
+.container {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Garantir que o texto dentro do formulário fique alinhado à esquerda */
+}
+
+label {
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: block;
+    color: #555; /* Cor do texto do label */
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc; /* Cor da borda */
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    color: #333;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #28a745; /* Cor de fundo do botão */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #218838; /* Cor do botão quando passar o mouse */
+}
+
+/* Estilo para o CPF gerado */
+.cpf-gerado {
+    font-size: 22px;
+    font-weight: bold;
+    color: #28a745; /* Cor verde para destacar */
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e8f5e9; /* Fundo suave para destacar */
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+}
+
+p {
+    font-size: 18px;
+    color: #555; /* Cor do parágrafo */
+}
+
+
+input[type="text"] {
+     width: 80%;
+    padding: 10px;
+    margin: 0 auto 10px auto;
+    margin: 0 auto 10px auto; /* Centraliza o input com margem automática nas laterais */
+    display: block; /* Faz o input ser tratado como um bloco */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.resultado {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 18px;
+    display: inline-block;
+    text-align: center;
+}
+
+.resultado.valido {
+    color: #28a745; /* Verde para válido */
+    background-color: #e8f5e9; /* Fundo suave para válido */
+}
+
+.resultado.invalido {
+    color: #dc3545; /* Vermelho para inválido */
+    background-color: #f8d7da; /* Fundo suave para inválido */
+}
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Gerar CPF</h1>
+    <form method="POST">
+        <label for="estado">Escolha o Estado:</label>
+        <select name="estado" id="estado" required>
+            <option value="RJ" {% if estado == 'RJ' %}selected{% endif %}>Rio de Janeiro</option>
+            <option value="SP" {% if estado == 'SP' %}selected{% endif %}>São Paulo</option>
+            <option value="MG" {% if estado == 'MG' %}selected{% endif %}>Minas Gerais</option>
+            <option value="PR" {% if estado == 'PR' %}selected{% endif %}>Paraná</option>
+            <option value="BA" {% if estado == 'BA' %}selected{% endif %}>Bahia</option>
+            <option value="PE" {% if estado == 'PE' %}selected{% endif %}>Pernambuco</option>
+            <option value="AC" {% if estado == 'AC' %}selected{% endif %}>Acre</option>
+            <option value="AL" {% if estado == 'AL' %}selected{% endif %}>Alagoas</option>
+            <option value="AP" {% if estado == 'AP' %}selected{% endif %}>Amapá</option>
+            <option value="AM" {% if estado == 'AM' %}selected{% endif %}>Amazonas</option>
+            <option value="CE" {% if estado == 'CE' %}selected{% endif %}>Ceará</option>
+            <option value="DF" {% if estado == 'DF' %}selected{% endif %}>Distrito Federal</option>
+            <option value="ES" {% if estado == 'ES' %}selected{% endif %}>Espírito Santo</option>
+            <option value="GO" {% if estado == 'GO' %}selected{% endif %}>Goiás</option>
+            <option value="MA" {% if estado == 'MA' %}selected{% endif %}>Maranhão</option>
+            <option value="MT" {% if estado == 'MT' %}selected{% endif %}>Mato Grosso</option>
+            <option value="MS" {% if estado == 'MS' %}selected{% endif %}>Mato Grosso do Sul</option>
+            <option value="PA" {% if estado == 'PA' %}selected{% endif %}>Pará</option>
+            <option value="PB" {% if estado == 'PB' %}selected{% endif %}>Paraíba</option>
+            <option value="RN" {% if estado == 'RN' %}selected{% endif %}>Rio Grande do Norte</option>
+            <option value="RS" {% if estado == 'RS' %}selected{% endif %}>Rio Grande do Sul</option>
+            <option value="RO" {% if estado == 'RO' %}selected{% endif %}>Rondônia</option>
+            <option value="RR" {% if estado == 'RR' %}selected{% endif %}>Roraima</option>
+            <option value="SC" {% if estado == 'SC' %}selected{% endif %}>Santa Catarina</option>
+            <option value="SE" {% if estado == 'SE' %}selected{% endif %}>Sergipe</option>
+            <option value="TO" {% if estado == 'TO' %}selected{% endif %}>Tocantins</option>
+
+
+            <!-- Adicione mais estados aqui -->
+        </select>
+        <button type="submit">Gerar CPF</button>
+    </form>
+
+    {% if cpf_gerado %}
+        <p class="cpf-gerado">CPF Gerado: {{ cpf_gerado }}</p>
+    {% endif %}
+</div>
+
+<div class="container">
+    <h1>Validação de CPF</h1>
+    <form method="POST">
+        <input type="text" name="cpf" value="{{ cpf }}" placeholder="Digite o CPF" required>
+        <button type="submit">Validar</button>
+    </form>
+
+    {% if resultado %}
+    <div class="resultado {{ resultado_tipo }}">
+        <p>{{ resultado }}</p>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
