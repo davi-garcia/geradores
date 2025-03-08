@@ -120,7 +120,7 @@ def index():
             resultado = None  # Limpa o resultado de validação ao gerar o CPF
             resultado_tipo = ""
 
-    return render_template("index.html", resultado=resultado, cpf=cpf, estado=estado, cpf_gerado=cpf_gerado, resultado_tipo=resultado_tipo)
+    return render_template("cpf.html", resultado=resultado, cpf=cpf, estado=estado, cpf_gerado=cpf_gerado, resultado_tipo=resultado_tipo)
 
 if __name__ == "__main__":
     app.run(debug=True)

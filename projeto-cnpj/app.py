@@ -79,7 +79,7 @@ def index():
             else:
                 mensagem = f'O CNPJ {cnpj_input} é inválido!'
 
-    return render_template("index.html", mensagem=mensagem, cnpj_gerado=cnpj_gerado)
+    return render_template("cnpj.html", mensagem=mensagem, cnpj_gerado=cnpj_gerado)
 
 if __name__ == "__main__":
     app.run(debug=True)
