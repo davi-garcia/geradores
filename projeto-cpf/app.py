@@ -96,7 +96,7 @@ def validar_cpf(cpf: str) -> bool:
         return True
     return False
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/Geradores/projeto-cpf/templates/", methods=["GET", "POST"])
 def index():
     estado = None
     cpf_gerado = None
