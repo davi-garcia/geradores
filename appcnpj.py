@@ -64,7 +64,7 @@ def validar_cnpj(cnpj):
         return True
     return False
 
-@app.route("/Geradores/projeto-cnpj/templates", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def index():
     mensagem = ""
     cnpj_gerado = None
